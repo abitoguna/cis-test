@@ -387,7 +387,6 @@ npm run test:coverage    # Coverage report
 | **NODE_ENV** | No | `development` or `production` |
 | **UPS_CLIENT_ID** | ✅ Yes | OAuth client ID |
 | **UPS_CLIENT_SECRET** | ✅ Yes | OAuth client secret |
-| **UPS_SHIPPER_NUMBER** | ✅ Yes | Your UPS shipper account number |
 | **UPS_BASE_URL** | No | API base URL (defaults to production) |
 | **UPS_AUTH_URL** | No | OAuth endpoint |
 ---

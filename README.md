@@ -4,22 +4,6 @@ A production-grade TypeScript backend service that abstracts shipping carrier AP
 
 **Tech Stack**: Next.js (API Routes), TypeScript, Vitest, Node.js 18+
 
-### Running
-
-Install dependencies
-
-npm install
-
-Run tests
-
-npm run test
-
-Run dev server
-
-npm run dev
-
----
-
 ## 1. Project Overview
 
 This project implements a **carrier-agnostic rate quotation service** that solves the problem of integrating multiple shipping carriers into a single application. Rather than exposing carrier-specific APIs directly to clients, this service provides:
@@ -357,7 +341,7 @@ Tests validate **behavior** using **fixtures** for consistency.
 ### Prerequisites
 - Node.js 18.17.0+
 - npm 9.0.0+
-- UPS Developer Account (free tier available)
+
 
 ### Setup
 
@@ -406,103 +390,9 @@ npm run test:coverage    # Coverage report
 | **UPS_SHIPPER_NUMBER** | ✅ Yes | Your UPS shipper account number |
 | **UPS_BASE_URL** | No | API base URL (defaults to production) |
 | **UPS_AUTH_URL** | No | OAuth endpoint |
-| **LOG_LEVEL** | No | `info`, `debug`, or `error` |
-
-### Getting UPS Credentials
-
-1. Register at https://developer.ups.com/
-2. Create OAuth app (Client Credentials grant)
-3. Get Shipper Number from account settings
-4. Enable Rating API in API Catalog
-
 ---
 
-## 12. Example API Request and Response
-
-### Request
-
-```bash
-curl -X POST http://localhost:3000/api/rates \
-  -H "Content-Type: application/json" \
-  -d '{
-    "origin": {
-      "street": "100 Main St",
-      "city": "Los Angeles",
-      "state": "CA",
-      "postalCode": "90001",
-      "country": "US"
-    },
-    "destination": {
-      "street": "456 Oak Ave",
-      "city": "New York",
-      "state": "NY",
-      "postalCode": "10001",
-      "country": "US"
-    },
-    "packages": [
-      {
-        "weight": 5.5,
-        "weightUnit": "LB",
-        "dimensions": {
-          "length": 12,
-          "width": 8,
-          "height": 6,
-          "unit": "IN"
-        }
-      }
-    ]
-  }'
-```
-
-### Success Response (200 OK)
-
-```json
-{
-  "success": true,
-  "rates": [
-    {
-      "carrierName": "UPS",
-      "serviceType": "UPS Next Day Air",
-      "baseRate": 42.50,
-      "currency": "USD",
-      "surcharges": [
-        {
-          "type": "SR",
-          "amount": 1.50,
-          "description": "Surcharge"
-        }
-      ],
-      "totalRate": 52.25,
-      "estimatedDelivery": {
-        "businessDays": 1
-      },
-      "guaranteedIndicator": true,
-      "attributes": {
-        "serviceCode": "13"
-      }
-    }
-  ]
-}
-```
-
-### Error Response (400)
-
-```json
-{
-  "success": false,
-  "error": "Invalid rate request",
-  "code": "VALIDATION_ERROR",
-  "details": {
-    "errors": [
-      "From address: Street is required"
-    ]
-  }
-}
-```
-
----
-
-## 13. Extensibility
+## 12. Extensibility
 
 ### Adding a New Carrier (e.g., FedEx)
 
@@ -519,7 +409,7 @@ That's it! Existing code automatically supports the new carrier.
 
 ---
 
-## 14. Future Improvements
+## 13. Future Improvements
 
 ### Performance
 - Distributed token cache (Redis)
@@ -534,8 +424,7 @@ That's it! Existing code automatically supports the new carrier.
 - Fallback/cached rates
 
 ### Observability
-- Structured logging (Winston/Pino)
-- Distributed tracing (OpenTelemetry)
+- Structured logging
 - Metrics (Prometheus)
 - Error reporting (Sentry)
 
@@ -558,7 +447,3 @@ That's it! Existing code automatically supports the new carrier.
 ## License
 
 MIT
-
-## Support
-
-For questions or issues, open a GitHub issue or contact engineering@cybership.dev

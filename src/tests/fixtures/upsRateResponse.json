@@ -1,0 +1,14 @@
+{
+  "rates": [
+    {
+      "service": "UPS Ground",
+      "price": "10.50",
+      "currency": "USD"
+    },
+    {
+      "service": "UPS Express",
+      "price": "25.30",
+      "currency": "USD"
+    }
+  ]
+}

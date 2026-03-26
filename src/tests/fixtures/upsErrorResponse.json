@@ -1,0 +1,16 @@
+{
+  "RateResponse": {
+    "Response": {
+      "ResponseStatus": {
+        "Code": "0",
+        "Description": "Failure"
+      },
+      "Alert": [
+        {
+          "Code": "120001",
+          "Description": "Request is missing required field."
+        }
+      ]
+    }
+  }
+}
